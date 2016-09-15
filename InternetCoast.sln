@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InternetCoast.Web.Tests", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InternetCoast.Model", "InternetCoast.Model\InternetCoast.Model.csproj", "{23DBC927-75F9-4971-AB1E-AF299E82DFB3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InternetCoast.Infrastructure", "InternetCoast.Infrastructure\InternetCoast.Infrastructure.csproj", "{B1895736-7F1E-4727-A6F6-16C005DA2408}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{23DBC927-75F9-4971-AB1E-AF299E82DFB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{23DBC927-75F9-4971-AB1E-AF299E82DFB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{23DBC927-75F9-4971-AB1E-AF299E82DFB3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B1895736-7F1E-4727-A6F6-16C005DA2408}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B1895736-7F1E-4727-A6F6-16C005DA2408}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B1895736-7F1E-4727-A6F6-16C005DA2408}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B1895736-7F1E-4727-A6F6-16C005DA2408}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
