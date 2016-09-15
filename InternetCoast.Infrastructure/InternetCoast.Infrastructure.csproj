@@ -34,7 +34,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>Paomedia-Small-N-Flat-Cogs.ico</ApplicationIcon>
+    <ApplicationIcon>cog.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Elmah">
@@ -109,7 +109,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Paomedia-Small-N-Flat-Cogs.ico" />
+    <Content Include="cog.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
