@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="Context\AppDbContext.cs" />
     <Compile Include="Context\DatabaseInitializer.cs" />
+    <Compile Include="Entities\Agency.cs" />
     <Compile Include="Entities\Role.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Entities\UserRole.cs" />
