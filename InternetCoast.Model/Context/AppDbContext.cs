@@ -17,13 +17,33 @@ namespace InternetCoast.Model.Context
         public DbSet<Role> Role { get; set; }
         public DbSet<User> User { get; set; }
         public DbSet<UserRole> UserRole { get; set; }
-
         public DbSet<Agency> Agency { get; set; }
+        public DbSet<Fund> Fund { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
             base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<Fund>()
+                .HasMany<Source>(f => f.Sources)
+                .WithMany(s => s.Funds)
+                .Map(cs =>
+                {
+                    cs.MapLeftKey("FundId");
+                    cs.MapRightKey("SourceId");
+                    cs.ToTable("FundSource");
+                });
+
+            modelBuilder.Entity<Fund>()
+                .HasMany<Agency>(f => f.Agencies)
+                .WithMany(a => a.Funds)
+                .Map(cs =>
+                {
+                    cs.MapLeftKey("FundId");
+                    cs.MapRightKey("AgencyId");
+                    cs.ToTable("FundAgency");
+                });
         }
 
         private void InitializeDatabase()
