@@ -16,6 +16,10 @@ namespace InternetCoast.Model.Entities
         [Required]
         public string FundTopic { get; set; }
 
+        public string Solicitation { get; set; }
+
+        public string Url { get; set; }
+
         public virtual ICollection<Source> Sources { get; set; }
 
         public virtual ICollection<Agency> Agencies { get; set; }
@@ -23,6 +27,8 @@ namespace InternetCoast.Model.Entities
         public DateTime? OpenDate { get; set; }
 
         public DateTime? DeadLine { get; set; }
+
+        public string Elegibility { get; set; }
 
         public string Remarks { get; set; }
 
