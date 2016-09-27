@@ -4,7 +4,7 @@ using InternetCoast.Model.Entities;
 
 namespace InternetCoast.Model.Context
 {
-    public class DatabaseInitializer : DropCreateDatabaseAlways<AppDbContext>
+    public class DatabaseInitializer : DropCreateDatabaseIfModelChanges<AppDbContext>
     {
         protected override void Seed(AppDbContext context)
         {
