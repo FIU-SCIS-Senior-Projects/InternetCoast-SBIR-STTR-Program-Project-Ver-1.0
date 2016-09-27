@@ -9,7 +9,7 @@ using HtmlAgilityPack;
 
 namespace InternetCoast.Conectors.DOD
 {
-    class Program
+    internal class DodConector
     {
         static void Main(string[] args)
         {
@@ -23,25 +23,16 @@ namespace InternetCoast.Conectors.DOD
                 var temp = new HtmlDocument();
                 temp.LoadHtml(topic);
 
-                var cointainers = temp.DocumentNode.SelectNodes("//div");
+                var containers = temp.DocumentNode.SelectNodes("//div");
+                // remove main div
+                containers.RemoveAt(0);
 
-                var title = cointainers.Where(e => e.InnerText.Contains("TITLE:")).ToList();
-
+                var title = containers.Where(e => e.InnerText.Contains("TITLE:")).ToList();
             }
         }
 
         private static IEnumerable<string> GetTopicsHtml(string html)
         {
-            //var charactersToReplace = new[] { @"\t", @"\n", @"\r", @"\r\n", " " };
-            //html = charactersToReplace.Aggregate(html, (current, s) => current.Replace(s, ""));
-
-            //var startIndex = html.IndexOf("<!-- top-start -->", StringComparison.Ordinal);
-            //var endIndex = html.LastIndexOf("<!-- top-end -->", StringComparison.Ordinal);
-            //var length = endIndex - startIndex;
-
-            //var topicsHtml = html.Substring(startIndex, length);
-
-
             var subs = html.Split(new[] { "<!-- top-start -->" }, StringSplitOptions.RemoveEmptyEntries);
 
             var topics = (from t
