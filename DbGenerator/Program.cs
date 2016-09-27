@@ -18,7 +18,7 @@ namespace DbGenerator
             }
             catch (Exception e)
             {
-                Console.WriteLine(e.InnerException.Message);
+                Console.WriteLine(e.Message);
                 throw;
             }
             

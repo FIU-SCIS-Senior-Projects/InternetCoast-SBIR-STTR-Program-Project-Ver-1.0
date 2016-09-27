@@ -35,6 +35,7 @@ namespace InternetCoast.Model.Entities
         public Fund()
         {
             Sources = new List<Source>();
+            Agencies = new List<Agency>();
         }
 
         #region Tracking

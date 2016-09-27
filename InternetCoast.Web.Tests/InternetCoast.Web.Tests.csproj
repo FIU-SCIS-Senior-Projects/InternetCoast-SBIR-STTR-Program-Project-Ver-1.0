@@ -92,6 +92,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\InternetCoast.Infrastructure\InternetCoast.Infrastructure.csproj">
+      <Project>{b1895736-7f1e-4727-a6f6-16c005da2408}</Project>
+      <Name>InternetCoast.Infrastructure</Name>
+    </ProjectReference>
     <ProjectReference Include="..\InternetCoast.Web\InternetCoast.Web.csproj">
       <Project>{D66867FB-E567-4ADB-9375-F76A753C932E}</Project>
       <Name>InternetCoast.Web</Name>
