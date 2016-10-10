@@ -19,6 +19,7 @@ namespace InternetCoast.Model.Context
         public DbSet<UserRole> UserRole { get; set; }
         public DbSet<Agency> Agency { get; set; }
         public DbSet<Fund> Fund { get; set; }
+        public DbSet<Source> Source { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -26,7 +27,7 @@ namespace InternetCoast.Model.Context
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<Fund>()
-                .HasMany<Source>(f => f.Sources)
+                .HasMany(f => f.Sources)
                 .WithMany(s => s.Funds)
                 .Map(cs =>
                 {
@@ -36,7 +37,7 @@ namespace InternetCoast.Model.Context
                 });
 
             modelBuilder.Entity<Fund>()
-                .HasMany<Agency>(f => f.Agencies)
+                .HasMany(f => f.Agencies)
                 .WithMany(a => a.Funds)
                 .Map(cs =>
                 {

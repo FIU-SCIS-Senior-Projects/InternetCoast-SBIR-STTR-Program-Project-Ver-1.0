@@ -33,6 +33,13 @@ namespace InternetCoast.DAL.Repositories
             return query;
         }
 
+        public void AddList(List<Fund> list)
+        {
+            _context.Fund.AddRange(list);
+            Save();
+        }
+
+
         //public FilteredFunds GetFilteredApplications(string filter, int? take, int? skip)
         //{
         //    var result = new FilteredFunds();
@@ -140,7 +147,9 @@ namespace InternetCoast.DAL.Repositories
         //    }
 
         //    return true;
-        //}
+        //}pu
+
+
     }
 
     public class FilteredFunds

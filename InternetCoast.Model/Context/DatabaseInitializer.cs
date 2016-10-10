@@ -25,6 +25,15 @@ namespace InternetCoast.Model.Context
             };
             context.Agency.AddRange(agencies);
 
+            var fundSources = new List<Source>
+            {
+                new Source {SourceName = "SBIR Program"},
+                new Source {SourceName = "STTR Program"},
+                new Source {SourceName = "Competitive Program"},
+                new Source {SourceName = "State & Federal Grants"}
+            };
+            context.Source.AddRange(fundSources);
+
             context.SaveChanges();
         }
     }

@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 using HtmlAgilityPack;
+using InternetCoast.DAL.Repositories;
+using InternetCoast.Infrastructure.Data.EF.Context;
+using InternetCoast.Model.Context;
+using InternetCoast.Model.Entities;
 
 namespace InternetCoast.Conectors.DOD
 {
@@ -18,17 +19,47 @@ namespace InternetCoast.Conectors.DOD
 
             var topicsHtml = GetTopicsHtml(html);
 
+            var funds = new List<Fund>();
+
             foreach (var topic in (List<string>)topicsHtml)
             {
                 var temp = new HtmlDocument();
                 temp.LoadHtml(topic);
 
-                var containers = temp.DocumentNode.SelectNodes("//div");
+                var divContainers = temp.DocumentNode.SelectNodes("//div");
                 // remove main div
-                containers.RemoveAt(0);
+                divContainers.RemoveAt(0);
 
-                var title = containers.Where(e => e.InnerText.Contains("TITLE:")).ToList();
+                var solicitation = divContainers.First().InnerText;
+
+                var titleContainter = divContainers.SingleOrDefault(e => e.InnerText.Contains("TITLE:"));
+
+                if (titleContainter == null) continue;
+
+                var title = titleContainter.InnerText.Replace("TITLE: ", "");
+
+                var pContainers = temp.DocumentNode.SelectNodes("//p");
+
+                var topicArea = pContainers.First().InnerText.Replace("TECHNOLOGY AREA(S): ", "");
+
+                var remarks = pContainers.Single(e => e.InnerText.Contains("KEYWORDS:"))
+                    .InnerText.Replace("KEYWORDS: ", "");
+
+                var fund = new Fund
+                {
+                    Solicitation = solicitation,
+                    FundTitle = title,
+                    FundTopic = topicArea,
+                    Remarks = remarks,
+                    Url = url
+                };
+
+                funds.Add(fund);
             }
+
+            var repository = new FundRepository(new AppDbContext(new UiContext()));
+
+            repository.AddList(funds);
         }
 
         private static IEnumerable<string> GetTopicsHtml(string html)
