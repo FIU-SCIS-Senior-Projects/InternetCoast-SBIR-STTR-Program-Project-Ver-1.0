@@ -214,6 +214,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CompetitiveProgramController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
@@ -287,6 +288,8 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\CompetitiveProgram\Index.cshtml" />
+    <Content Include="Views\CompetitiveProgram\AddCompetitiveProgram.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -298,6 +301,16 @@
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\InternetCoast.Infrastructure\InternetCoast.Infrastructure.csproj">
+      <Project>{B1895736-7F1E-4727-A6F6-16C005DA2408}</Project>
+      <Name>InternetCoast.Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\InternetCoast.Model\InternetCoast.Model.csproj">
+      <Project>{23DBC927-75F9-4971-AB1E-AF299E82DFB3}</Project>
+      <Name>InternetCoast.Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -51,15 +51,32 @@ namespace InternetCoast.Conectors.DOD
                     FundTitle = title,
                     FundTopic = topicArea,
                     Remarks = remarks,
-                    Url = url
+                    Url = url,
+                    Agencies = new List<Agency>(),
+                    Sources = new List<Source>()
                 };
 
                 funds.Add(fund);
             }
 
-            var repository = new FundRepository(new AppDbContext(new UiContext()));
 
-            repository.AddList(funds);
+            using (var context = new AppDbContext(new UiContext()))
+            {
+                var fundType = context.Source.SingleOrDefault(s => s.SourceName.Equals("SBIR Program"));
+                var fundAgency = context.Agency.SingleOrDefault(a => a.Acronym.Equals("DOD"));
+                var fundSubAgency = new Agency {AgencyName = "Army"};
+                funds.ForEach(f =>
+                {
+                    f.Sources.Add(fundType);
+                    f.Agencies.Add(fundAgency);
+                    f.Agencies.Add(fundSubAgency);
+                });
+                context.Fund.AddRange(funds);
+                context.SaveChanges();
+            }
+
+            //var repository = new FundRepository(new AppDbContext(new UiContext()));
+            //repository.AddList(funds);
         }
 
         private static IEnumerable<string> GetTopicsHtml(string html)

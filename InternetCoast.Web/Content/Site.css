@@ -22,3 +22,7 @@ select,
 textarea {
     max-width: 280px;
 }
+
+td .alert, .panel-collapse table {
+    margin-bottom: 0;
+}

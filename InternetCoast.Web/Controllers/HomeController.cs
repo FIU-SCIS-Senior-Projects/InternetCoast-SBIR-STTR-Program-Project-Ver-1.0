@@ -1,8 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Linq;
 using System.Web.Mvc;
+using InternetCoast.Infrastructure.Data.EF.Context;
+using InternetCoast.Model.Context;
 
 namespace InternetCoast.Web.Controllers
 {
@@ -10,6 +9,16 @@ namespace InternetCoast.Web.Controllers
     {
         public ActionResult Index()
         {
+            using (var context = new AppDbContext(new UiContext()))
+            {
+                var sbir =
+                    context.Fund.Include("Agencies")
+                        .Where(f => f.Sources.Any(s => s.SourceName.Equals("SBIR Program")))
+                        .ToList();
+                
+                ViewBag.Sbir = sbir;
+            }
+
             return View();
         }
 
