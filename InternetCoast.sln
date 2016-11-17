@@ -13,9 +13,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InternetCoast.Infrastructur
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DbGenerator", "DbGenerator\DbGenerator.csproj", "{B78EC631-BDCB-4899-9669-9A1CFAE44EAA}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "InternetCoast.Conectors", "InternetCoast.Conectors", "{5DE7FBE4-F0BE-488C-A246-9952C3D56D40}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "InternetCoast.Connectors", "InternetCoast.Connectors", "{5DE7FBE4-F0BE-488C-A246-9952C3D56D40}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InternetCoast.Conectors.DOD", "InternetCoast.Conectors.DOD\InternetCoast.Conectors.DOD.csproj", "{2D25D4D5-22CC-44D5-9A27-2096DCBB4030}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InternetCoast.Connectors.DOD", "InternetCoast.Conectors.DOD\InternetCoast.Connectors.DOD.csproj", "{2D25D4D5-22CC-44D5-9A27-2096DCBB4030}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InternetCoast.DAL", "InternetCoast.DAL\InternetCoast.DAL.csproj", "{76A82322-3DCF-4FEB-8729-0C0E86E28D81}"
 EndProject

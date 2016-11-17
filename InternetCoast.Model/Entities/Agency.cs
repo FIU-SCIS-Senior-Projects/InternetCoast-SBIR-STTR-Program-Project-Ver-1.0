@@ -19,9 +19,9 @@ namespace InternetCoast.Model.Entities
 
         public virtual ICollection<Fund> Funds { get; set; }
 
-        public Agency()
-        {
-            Funds = new List<Fund>();
-        }
+        //public Agency()
+        //{
+        //    Funds = new List<Fund>();
+        //}
     }
 }

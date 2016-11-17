@@ -18,10 +18,10 @@ namespace InternetCoast.Model.Entities
 
         public virtual ICollection<Fund> Funds { get; set; }
 
-        public Source()
-        {
-            Funds = new List<Fund>();
-        }
+        //public Source()
+        //{
+        //    Funds = new List<Fund>();
+        //}
 
         #region Tracking
         public bool Active { get; set; }

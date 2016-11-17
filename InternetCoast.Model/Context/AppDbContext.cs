@@ -53,6 +53,5 @@ namespace InternetCoast.Model.Context
             if (!Database.Exists())
                 Database.Initialize(true);
         }
-
     }
 }

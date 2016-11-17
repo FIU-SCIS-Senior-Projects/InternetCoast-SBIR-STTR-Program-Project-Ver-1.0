@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using HtmlAgilityPack;
-using InternetCoast.DAL.Repositories;
 using InternetCoast.Infrastructure.Data.EF.Context;
 using InternetCoast.Model.Context;
 using InternetCoast.Model.Entities;
@@ -14,7 +13,7 @@ namespace InternetCoast.Conectors.DOD
     {
         static void Main(string[] args)
         {
-            const string url = "http://www.acq.osd.mil/osbp/sbir/solicitations/sbir20163/army163.html";
+            const string url = "http://www.acq.osd.mil/osbp/sbir/solicitations/sbir20163/navy163.html";
             var html = new WebClient().DownloadString(url);
 
             var topicsHtml = GetTopicsHtml(html);

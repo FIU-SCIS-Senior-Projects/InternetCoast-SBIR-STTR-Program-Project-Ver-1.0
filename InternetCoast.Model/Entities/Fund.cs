@@ -18,6 +18,12 @@ namespace InternetCoast.Model.Entities
 
         public string Solicitation { get; set; }
 
+        public string Description { get; set; }
+
+        public string KeyWords { get; set; }
+
+        public string Elegibility { get; set; }
+
         public string Url { get; set; }
 
         public virtual ICollection<Source> Sources { get; set; }
@@ -28,15 +34,15 @@ namespace InternetCoast.Model.Entities
 
         public DateTime? DeadLine { get; set; }
 
-        public string Elegibility { get; set; }
+        public string Awards { get; set; }
 
         public string Remarks { get; set; }
 
-        public Fund()
-        {
-            Sources = new List<Source>();
-            Agencies = new List<Agency>();
-        }
+        //public Fund()
+        //{
+        //    Sources = new List<Source>();
+        //    Agencies = new List<Agency>();
+        //}
 
         #region Tracking
         public bool Active { get; set; }

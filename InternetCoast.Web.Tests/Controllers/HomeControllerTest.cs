@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using InternetCoast.Web;
 using InternetCoast.Web.Controllers;
 
 namespace InternetCoast.Web.Tests.Controllers

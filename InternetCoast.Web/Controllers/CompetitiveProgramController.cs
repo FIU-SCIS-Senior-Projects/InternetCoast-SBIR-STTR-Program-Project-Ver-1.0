@@ -4,6 +4,7 @@ using System.Web.Mvc;
 using InternetCoast.Infrastructure.Data.EF.Context;
 using InternetCoast.Model.Context;
 using InternetCoast.Model.Entities;
+using InternetCoast.Web.Models.ViewModels.CompetitiveProgramsViewModels;
 
 namespace InternetCoast.Web.Controllers
 {
@@ -12,7 +13,7 @@ namespace InternetCoast.Web.Controllers
         // GET: CompetitiveProgram
         public ActionResult Index()
         {
-            var model = new List<Fund>();
+            var model = new HomeViewModel {NewFund = new Fund()};
 
             using (var context = new AppDbContext(new UiContext()))
             {
@@ -21,7 +22,7 @@ namespace InternetCoast.Web.Controllers
                         .Where(f => f.Sources.Any(s => s.SourceName.Equals("Competitive Program")))
                         .ToList();
 
-                model.AddRange(funds);
+                model.Funds.AddRange(funds);
             }
 
             return View(model);
