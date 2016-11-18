@@ -1,4 +1,4 @@
-﻿@model IEnumerable<InternetCoast.Model.Entities.Fund>
+﻿@model InternetCoast.Web.Models.ViewModels.CompetitiveProgramsViewModels.HomeViewModel
 
 @{
     ViewBag.Title = "Competitive Programs";
@@ -11,46 +11,138 @@
     </div>
 </div>
 
+<div class="row">
+    <div class="col-lg-12">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
 
-
-<div class="panel panel-default">
-    <!-- Default panel contents -->
-
-    <div class="panel-heading">
-        <h3 class="panel-title">Competitive Programs</h3>
+            <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                <div class="panel panel-info">
+                    <div class="panel-heading" role="tab" id="headingOne">
+                        <h4 class="panel-title">
+                            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                Add Competitive Program
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                        <div class="panel-body">
+                            <div class="form-horizontal">
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">Competitive Event</label>
+                                    <div class="col-sm-10">
+                                        <div class="col-md-10">
+                                            @Html.EditorFor(model => model.NewFund.FundTitle, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.NewFund.FundTitle, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">Original Post Url</label>
+                                    <div class="col-sm-10">
+                                        <div class="col-md-10">
+                                            @Html.EditorFor(model => model.NewFund.Url, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.NewFund.Url, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">Topic</label>
+                                    <div class="col-sm-10">
+                                        <div class="col-md-10">
+                                            @Html.EditorFor(model => model.NewFund.FundTopic, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.NewFund.FundTopic, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">Elegibility</label>
+                                    <div class="col-sm-10">
+                                        <div class="col-md-10">
+                                            @Html.EditorFor(model => model.NewFund.Elegibility, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.NewFund.Elegibility, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">Total Awards($millions)</label>
+                                    <div class="col-sm-10">
+                                        <div class="col-md-10">
+                                            @Html.EditorFor(model => model.NewFund.Awards, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.NewFund.Awards, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">DeadLine</label>
+                                    <div class="col-sm-10">
+                                        <div class="col-md-10">
+                                            @Html.EditorFor(model => model.NewFund.DeadLine, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.NewFund.DeadLine, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-offset-2 col-md-10">
+                                        <input type="submit" value="Create" class="btn btn-default" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
     </div>
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>Competitive Event</th>
-                <th>Topic</th>
-                <th>Elegibility</th>
-                <th>Total Awards($millions)</th>
-                <th>Deadline</th>
-            </tr>
-        </thead>
-        <tbody>
-            @if (Model.Any())
-            {
-                foreach (var fund in Model)
-                {
-                    <tr>
-                        <td><a href="@fund.Url">@fund.FundTitle</a></td>
-                        <td>@fund.FundTopic</td>
-                        <td>@fund.Elegibility</td>
-                        <td>@fund.Remarks</td>
-                        <td>@fund.DeadLine</td>
-                    </tr>
-                }
-            }
-            else
-            {
-                <tr>
-                    <td colspan="5">
-                        <div class="alert alert-info" role="alert">No Competitive Programs found!</div>
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
 </div>
+<br/>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <!-- Default panel contents -->
+
+            <div class="panel-heading">
+                <h3 class="panel-title">Competitive Programs</h3>
+            </div>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Competitive Event</th>
+                        <th>Topic</th>
+                        <th>Elegibility</th>
+                        <th>Total Awards($millions)</th>
+                        <th>Deadline</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.Funds.Any())
+            {
+                foreach (var fund in Model.Funds)
+                {
+                            <tr>
+                                <td><a href="@fund.Url">@fund.FundTitle</a></td>
+                                <td>@fund.FundTopic</td>
+                                <td>@fund.Elegibility</td>
+                                <td>@fund.Remarks</td>
+                                <td>@fund.DeadLine</td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="5">
+                                <div class="alert alert-info" role="alert">No Competitive Programs found!</div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+
+
