@@ -1,0 +1,168 @@
+﻿@model InternetCoast.Web.Models.ViewModels.HomeViewModels.FundsListViewModel
+
+@{
+    ViewBag.Title = "Business Opportunities";
+}
+
+<div class="row">
+    <div class="col-lg-5">
+        <h2>@ViewBag.Title</h2>
+        <hr />
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingTwo">
+                    <h4 class="panel-title">
+                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            Competitive Programs
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Competitive Event</th>
+                                <th>Topic</th>
+                                <th>Elegibility</th>
+                                <th>Total Awards($millions)</th>
+                                <th>Deadline</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model.CompetitivePrograms.Any())
+                            {
+                                foreach (var fund in Model.CompetitivePrograms)
+                                {
+                                    <tr>
+                                        <td><a href="@fund.Url">@fund.FundTitle</a></td>
+                                        <td>@fund.FundTopic</td>
+                                        <td>@fund.Elegibility</td>
+                                        <td>@fund.Awards</td>
+                                        @if (fund.DeadLine.HasValue)
+                                        {
+                                            <td>@fund.DeadLine.Value.ToShortDateString()</td>
+                                        }
+                                        else
+                                        {
+                                            <td>NA</td>
+                                        }
+                                    </tr>
+                                }
+                            }
+                            else
+                            {
+                                <tr>
+                                    <td colspan="5">
+                                        <div class="alert alert-warning" role="alert">No records found!</div>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingThree">
+                    <h4 class="panel-title">
+                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                            State & Federal Grant Programs
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Solicitation</th>
+                                <th>Title</th>
+                                <th>Topic</th>
+                                <th>Agency</th>
+                                <th>Deadline</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model.Grants.Any())
+                            {
+                                foreach (var fund in Model.Grants)
+                                {
+                                    <tr>
+                                        <td><a href="@fund.Url">@fund.Solicitation</a></td>
+                                        <td>@fund.FundTitle</td>
+                                        <td>@fund.FundTopic</td>
+                                        <td>@string.Join(", ", fund.Agencies.Select(a => a.Acronym ?? a.AgencyName))</td>
+                                        @if (fund.DeadLine.HasValue)
+                                        {
+                                            <td>@fund.DeadLine.Value.ToShortDateString()</td>
+                                        }
+                                        else
+                                        {
+                                            <td>NA</td>
+                                        }
+                                    </tr>
+                                }
+                            }
+                            else
+                            {
+                                <tr>
+                                    <td colspan="5">
+                                        <div class="alert alert-warning" role="alert">No records found!</div>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingOne">
+                    <h4 class="panel-title">
+                        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            SBIR-STTR Programs
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Solicitation</th>
+                                <th>Title</th>
+                                <th>Topic</th>
+                                <th>Agency</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model.SbirSttr.Any())
+                            {
+                                foreach (var fund in Model.SbirSttr)
+                                {
+                                    <tr>
+                                        <td><a href="@fund.Url">@fund.Solicitation</a></td>
+                                        <td>@fund.FundTitle</td>
+                                        <td>@fund.FundTopic</td>
+                                        <td>@string.Join(", ", fund.Agencies.Select(a => a.Acronym ?? a.AgencyName))</td>
+                                    </tr>
+                                }
+                            }
+                            else
+                            {
+                                <tr>
+                                    <td colspan="4">
+                                        <div class="alert alert-warning" role="alert">No records found!</div>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

@@ -1,0 +1,81 @@
+﻿@model DateTime?
+
+@{
+    var time = false;
+    if (ViewData.ModelMetadata.AdditionalValues.ContainsKey("Time"))
+    {
+        time = bool.Parse(ViewData.ModelMetadata.AdditionalValues["Time"].ToString());
+    }
+}
+@if (!time)
+{
+    @Html.TextBox("", (Model.HasValue && Model.Value.Year > 1 ? Model.Value.ToShortDateString() : string.Empty), new { @class = "pickDate form-control" })
+}
+else
+{
+    @Html.TextBox("", (Model.HasValue ? Model.Value.ToString("HH:mm") : string.Empty), new { @class = "pickDate form-control" })
+}
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        // Le adiciona el datepicker a los campos DateTime
+        $('.pickDate').datepicker({
+            changeMonth: true,
+            changeYear: true,
+            yearRange: "-100:+20"
+        }).focus(function() {
+            $(".ui-datepicker-prev, .ui-datepicker-next").remove();
+        });
+
+        // Mascara para los campos tipo Date
+        $(".pickDate").keypress(function (e) {
+            if ($(this).val().length == 2 || $(this).val().length == 5) {
+                        var text = $(this).val() + "/";
+                        $(this).val(text);
+            }
+        });
+
+        // Mascara para los campos tipo Time
+        $(".pickTime").keypress(function (e) {
+            if ($(this).val().length == 2) {
+                        var text = $(this).val() + ":";
+                        $(this).val(text);
+            }
+        });
+
+        // Esta funcion no permite introducir caracteres q no sean numeros o enter o backspace,
+        // se tuvo en cuenta q los caracteres del teclado numerico tienen codigos (keyCode) diferentes incluso siendo los mismos numeros
+        $(".pickTime").keydown(function(e){
+            if(!(e.keyCode >= 48 && e.keyCode <=57) && !(e.keyCode >= 96 && e.keyCode <=105) && !(e.keyCode >= 8 && e.keyCode <=9)){
+                return false;
+            }
+        });
+
+        $(".pickDate").keydown(function(e){
+            if(!(e.keyCode >= 48 && e.keyCode <=57) && !(e.keyCode >= 96 && e.keyCode <=105) && !(e.keyCode >= 8 && e.keyCode <=9)){
+                return false;
+            }
+        });
+
+        // Permite dar click sobre los campos Time o Date y selecciona todo el texto
+        $(".pickTime").click(function () {
+            $(this).select();
+        });
+
+        $(".pickDate").click(function () {
+            $(this).select();
+        });
+
+        // Restringe la longitud de los campos Time a 5 correspondiente al formato HH:mm
+        $(".pickTime").attr("maxlength", 5);
+
+        $(".pickDate").attr("maxlength", 10);
+
+        // Poniendole la clase "BullDateTime" validamos los DateTime correctamente
+        $(".pickDate").addClass("BullDateTime");
+
+    });
+
+</script>

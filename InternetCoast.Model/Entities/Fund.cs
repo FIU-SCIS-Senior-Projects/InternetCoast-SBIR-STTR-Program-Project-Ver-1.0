@@ -24,6 +24,7 @@ namespace InternetCoast.Model.Entities
 
         public string Elegibility { get; set; }
 
+        [DataType(DataType.Url)]
         public string Url { get; set; }
 
         public virtual ICollection<Source> Sources { get; set; }

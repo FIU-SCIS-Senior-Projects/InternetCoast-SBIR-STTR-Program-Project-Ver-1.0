@@ -1,4 +1,4 @@
-﻿@model IEnumerable<InternetCoast.Model.Entities.Fund>
+﻿@model InternetCoast.Web.Models.ViewModels.GrantsViewModels.HomeViewModel
 
 @{
     IDictionary<string, object> htmlAttributes = new Dictionary<string, object>();
@@ -16,34 +16,46 @@
         <hr />
     </div>
 </div>
-
-@using (Html.BeginForm("UploadDocuments", "Grants", null, FormMethod.Post, htmlAttributes))
-{
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            Process New File
+<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+    <div class="panel panel-info">
+        <div class="panel-heading" role="tab" id="headingOne">
+            <h4 class="panel-title">
+                <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    <span class="glyphicon glyphicon-transfer" aria-hidden="true"></span>&nbsp;Process New File
+                </a>
+            </h4>
         </div>
-        <div class="panel-body">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="input-group">
-                        <div class="input-group-btn">
-                            <label class="btn btn-info">
-                                Browse <input type="file" style="display: none;" multiple name="files" id="files">
-                            </label>
-                            <button type="reset" class="btn btn-success" id="btnRefresh"><span class="glyphicon glyphicon-refresh"></span>&nbsp;Refresh</button>
-                        </div>
-                        <input type="text" class="form-control" id="newDocuments" disabled>
-                        <div class="input-group-btn">
-                            <button type="submit" class="btn btn-info"><span class="glyphicon glyphicon-upload"></span>&nbsp;Upload</button>
+        <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+            @using (Html.BeginForm("UploadDocuments", "Grants", null, FormMethod.Post, htmlAttributes))
+            {
+                <div class="panel-body">
+                    <div class="form-group">
+                        <label>Funds Topic</label>
+                        @Html.EditorFor(model => model.Fund.FundTopic, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Fund.FundTopic, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="input-group">
+                                <div class="input-group-btn">
+                                    <label class="btn btn-info">
+                                        Browse <input type="file" style="display: none;" multiple name="files" id="files">
+                                    </label>
+                                    <button type="reset" class="btn btn-success" id="btnRefresh"><span class="glyphicon glyphicon-refresh"></span>&nbsp;Refresh</button>
+                                </div>
+                                <input type="text" class="form-control" id="newDocuments" disabled>
+                                <div class="input-group-btn">
+                                    <button type="submit" class="btn btn-info"><span class="glyphicon glyphicon-upload"></span>&nbsp;Upload</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            }
         </div>
     </div>
-}
-
+</div>
+<br />
 <div class="panel panel-default">
     <div class="panel-heading" role="tab" id="headingThree">
         <h4 class="panel-title">
@@ -61,27 +73,34 @@
             </tr>
         </thead>
         <tbody>
-            @if (Model.Any())
+            @if (Model.Funds.Any())
+            {
+                foreach (var fund in Model.Funds)
                 {
-                    foreach (var fund in Model)
-                    {
-                <tr>
-                    <td><a href="@fund.Url">@fund.Solicitation</a></td>
-                    <td>@fund.FundTitle</td>
-                    <td>@fund.FundTopic</td>
-                    <td>@string.Join(", ", fund.Agencies.Select(a => a.Acronym ?? a.AgencyName))</td>
-                    <td>@fund.DeadLine</td>
-                </tr>
-                    }
+                    <tr>
+                        <td><a href="@fund.Url">@fund.Solicitation</a></td>
+                        <td>@fund.FundTitle</td>
+                        <td>@fund.FundTopic</td>
+                        <td>@string.Join(", ", fund.Agencies.Select(a => a.Acronym ?? a.AgencyName))</td>
+                        @if (fund.DeadLine.HasValue)
+                        {
+                            <td>@fund.DeadLine.Value.ToShortDateString()</td>
+                        }
+                        else
+                        {
+                            <td>NA</td>
+                        }
+                    </tr>
                 }
-                else
-                {
+            }
+            else
+            {
                 <tr>
                     <td colspan="5">
-                        <div class="alert alert-info" role="alert">No records found!</div>
+                        <div class="alert alert-warning" role="alert">No records found!</div>
                     </td>
                 </tr>
-                }
+            }
         </tbody>
     </table>
 </div>

@@ -12,7 +12,7 @@ namespace InternetCoast.Model.Entities
         [StringLength(100)]
         public string AgencyName { get; set; }
 
-        [MaxLength(10)]
+        [MaxLength(50)]
         public string Acronym { get; set; }
 
         public string Remarks { get; set; }
